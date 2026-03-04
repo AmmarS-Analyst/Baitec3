@@ -50,7 +50,7 @@ const HowItWorks: FC = () => {
       </div>
 
       {/* Content - navy area needs enough height for text box + timeline */}
-      <div className="hiw-navy-bg overflow-hidden" style={{ background: "#002B49", padding: "clamp(2.5rem, 4vw, 4rem) clamp(1rem, 3vw, 2rem) 0" }}>
+      <div className="hiw-navy-bg" style={{ background: "#002B49", padding: "clamp(2.5rem, 4vw, 4rem) clamp(1rem, 3vw, 2rem) 0", overflow: "visible" }}>
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-stretch gap-4" style={{ marginTop: "-8rem" }}>
             {/* Left Column - pushed toward bottom */}
@@ -59,12 +59,12 @@ const HowItWorks: FC = () => {
               <div
                 ref={contentBoxRef}
                 className="mb-6"
-                style={{ background: "transparent", border: "1px solid #FFFFFF", borderRadius: "20px", padding: "clamp(1.5rem, 3vw, 2.5rem)" }}
+                style={{ background: "transparent", border: "1px solid #FFFFFF", borderRadius: "20px", padding: "clamp(1.5rem, 3vw, 2.5rem)", minHeight: "clamp(236px, 24.5vw, 304px)" }}
               >
-                <h3 className="flex items-center transition-opacity duration-300" style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 700, color: "#84DADE", marginBottom: "1rem", lineHeight: 1.2, minHeight: "clamp(40px, 6vw, 60px)" }}>
+                <h3 className="flex items-center transition-opacity duration-300" style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 700, color: "#84DADE", marginBottom: "1rem", lineHeight: 1.2, minHeight: "clamp(60px, 7.6vw, 90px)" }}>
                   {steps[activeStep].title}
                 </h3>
-                <p className="transition-opacity duration-300" style={{ fontSize: "clamp(16px, 2vw, 20px)", fontWeight: 400, color: "#FFFFFF", lineHeight: 1.6, margin: 0, opacity: 0.9, minHeight: "clamp(50px, 6vw, 72px)", transitionDelay: "0.05s" }}>
+                <p className="transition-opacity duration-300" style={{ fontSize: "clamp(16px, 2vw, 20px)", fontWeight: 400, color: "#FFFFFF", lineHeight: 1.6, margin: 0, opacity: 0.9, minHeight: "clamp(74px, 9.4vw, 116px)", transitionDelay: "0.05s" }}>
                   {steps[activeStep].description}
                 </p>
               </div>
@@ -86,7 +86,7 @@ const HowItWorks: FC = () => {
                       >
                         <div className="w-full h-full rounded-full flex items-center justify-center transition-all duration-300" style={{ backgroundColor: i === activeStep ? "#FF4438" : "#84DADE", boxShadow: "0 0 0 2px rgba(0,43,73,0.3), 0 2px 8px rgba(0,0,0,0.15)" }} />
                       </div>
-                      <span className="text-center transition-all duration-400 leading-tight whitespace-nowrap" style={{ fontSize: "clamp(9px, 1.1vw, 13px)", fontWeight: i === activeStep ? 700 : 400, color: i === activeStep ? "#FF4438" : "#FFFFFF" }}>
+                      <span className="text-center transition-all duration-400 leading-tight" style={{ fontSize: "clamp(9px, 1.1vw, 13px)", fontWeight: i === activeStep ? 700 : 400, color: i === activeStep ? "#FF4438" : "#FFFFFF", width: "clamp(55px, 7vw, 85px)" }}>
                         {step.title}
                       </span>
                     </div>
@@ -96,26 +96,24 @@ const HowItWorks: FC = () => {
             </div>
 
             {/* Right Column - Phone + Bars */}
-            <div className="w-full lg:w-1/2 hiw2-mobile-column relative hiw-right-col">
-              {/* Bars: overflow visible vertically (top), hidden on x */}
-              <div className="absolute inset-0 overflow-x-hidden hiw-bars-wrapper" style={{ overflow: "visible hidden" }}>
-                <img src="/assets/images/how_it_works2/setup_bars.svg" alt="Setup Bars" className="absolute pointer-events-none" style={{ bottom: 0, right: "-1rem", width: "auto", height: "38em", zIndex: 1 }} />
-              </div>
-              {/* Mobile image: overflow visible vertically */}
-              <div className="relative z-[3] flex justify-center lg:justify-end items-end" style={{ height: "clamp(20rem, 38vw, 32rem)", paddingRight: "clamp(2rem, 6vw, 8rem)" }}>
+            <div className="w-full lg:w-1/2 hiw2-mobile-column relative hiw-right-col" style={{ overflow: "visible" }}>
+              {/* Bars: fully visible overflow */}
+              <img src="/assets/images/how_it_works2/setup_bars.svg" alt="Setup Bars" className="absolute pointer-events-none" style={{ bottom: 0, right: "-1rem", width: "auto", height: "38em", zIndex: 1 }} />
+              {/* Mobile image: pushed more right */}
+              <div className="relative z-[3] flex justify-end items-end overflow-visible" style={{ height: "clamp(26rem, 46vw, 41rem)", paddingRight: "0rem" }}>
                 <img
                   src={stepImages[activeStep]}
                   alt={steps[activeStep].title}
                   className="transition-all duration-300 hiw-phone-img"
                   style={{
-                    width: "clamp(14em, 22vw, 20em)", height: "auto", maxHeight: "110%", objectFit: "contain",
-                    opacity: isTransitioning ? 0 : 1, transform: isTransitioning ? "translateY(10px) scale(0.98)" : "translateY(0) scale(1)",
+                    width: "clamp(21em, 31vw, 28em)", height: "auto", maxHeight: "168%", objectFit: "contain",
+                    opacity: isTransitioning ? 0 : 1, transform: isTransitioning ? "translate(2.75rem, -2rem) scale(0.98)" : "translate(2.75rem, -4.25rem) scale(1)",
                   }}
                 />
               </div>
-              {/* Shadow: overflow hidden on both axes */}
-              <div className="absolute bottom-0 left-0 right-0 overflow-hidden" style={{ height: "4rem", zIndex: 0 }}>
-                <img src="/assets/images/hero/shadow_1.svg" alt="Shadow" className="absolute pointer-events-none" style={{ bottom: "0.5rem", left: "50%", transform: "translateX(-50%)", width: "clamp(16em, 30vw, 22em)", height: "auto", opacity: isTransitioning ? 0 : 0.5 }} />
+              {/* Shadow under phone */}
+              <div className="absolute bottom-0 left-0 right-0 overflow-visible pointer-events-none" style={{ height: "6rem", zIndex: 2 }}>
+                <img src="/assets/images/hero/shadow_1.svg" alt="Shadow" className="absolute pointer-events-none" style={{ bottom: "0.75rem", left: "70%", transform: "translateX(-50%)", width: "clamp(22em, 36vw, 28em)", height: "auto", opacity: isTransitioning ? 0 : 0.78 }} />
               </div>
             </div>
           </div>
@@ -123,15 +121,14 @@ const HowItWorks: FC = () => {
       </div>
 
       <style>{`
-        .hiw-section { overflow: hidden; }
-        .hiw-right-col { overflow: visible; }
-        .hiw-bars-wrapper { overflow-y: visible !important; overflow-x: hidden !important; }
+        .hiw-section { overflow-x: hidden; overflow-y: visible; }
+        .hiw-right-col { overflow: visible !important; }
 
         @media (max-width: 1023px) {
           .hiw2-mobile-column { order: 1; margin-top: -5rem; margin-bottom: -2rem; }
           .hiw2-content-column { order: 2; width: 100%; padding-left: 0; }
-          .hiw-bars-wrapper > img[alt="Setup Bars"] { height: 22em; right: 50%; transform: translateX(50%); bottom: 0; }
-          .hiw2-mobile-column > div:nth-child(2) > img { max-width: 240px; width: 100%; }
+          .hiw2-mobile-column > img[alt="Setup Bars"] { height: 23em; right: 50%; transform: translateX(50%); bottom: 0; }
+          .hiw2-mobile-column > div:first-of-type > img { max-width: 330px; width: 100%; transform: translate(2.25rem, -2.25rem) !important; }
           .hiw2-content-column > div:first-of-type { width: 85%; max-width: 400px; margin-left: auto; margin-right: auto; padding: 1.5rem 1.25rem; }
           .hiw2-content-column > div:first-of-type > h3 { font-size: 24px; min-height: auto; }
           .hiw2-content-column > div:first-of-type > p { font-size: 15px; min-height: auto; }
@@ -139,8 +136,8 @@ const HowItWorks: FC = () => {
         }
         @media (max-width: 480px) {
           .hiw2-mobile-column { margin-top: -4rem; margin-bottom: -1.5rem; }
-          .hiw2-mobile-column > div:nth-child(2) > img { max-width: 200px; }
-          .hiw-bars-wrapper > img[alt="Setup Bars"] { height: 18em; }
+          .hiw2-mobile-column > div:first-of-type > img { max-width: 280px; transform: translate(1.9rem, -1.5rem) !important; }
+          .hiw2-mobile-column > img[alt="Setup Bars"] { height: 19em; }
           .hiw2-content-column > div:first-of-type { padding: 1.25rem 1rem; width: 90%; max-width: 350px; }
           .hiw2-content-column > div:first-of-type > h3 { font-size: 22px; }
           .hiw2-content-column > div:first-of-type > p { font-size: 13px; }
