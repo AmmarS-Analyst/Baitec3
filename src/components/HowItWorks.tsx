@@ -112,8 +112,8 @@ const HowItWorks: FC = () => {
                 />
               </div>
               {/* Shadow under phone */}
-              <div className="absolute bottom-0 left-0 right-0 overflow-visible pointer-events-none" style={{ height: "6rem", zIndex: 2 }}>
-                <img src="/assets/images/hero/shadow_1.svg" alt="Shadow" className="absolute pointer-events-none" style={{ bottom: "0.75rem", left: "70%", transform: "translateX(-50%)", width: "clamp(22em, 36vw, 28em)", height: "auto", opacity: isTransitioning ? 0 : 0.78 }} />
+              <div className="absolute bottom-0 left-0 right-0 overflow-visible pointer-events-none" style={{ height: "7rem", zIndex: 2 }}>
+                <img src="/assets/images/hero/shadow_1.svg" alt="Shadow" className="absolute pointer-events-none" style={{ bottom: "1rem", left: "90%", transform: "translateX(-50%) rotate(-6deg)", width: "clamp(27em, 45vw, 36em)", height: "auto", opacity: isTransitioning ? 0 : 0.78 }} />
               </div>
             </div>
           </div>
